@@ -4,11 +4,15 @@ const mongoose = require("mongoose");
 
 const schema = require("./graphql/schema/index");
 const rootValue = require("./graphql/resolvers/index");
+const isAuth = require('./middleware/auth')
 
 const port = process.env.PORT || 4000;
 
-// Create an express server and a GraphQL endpoint
+// Create an express server
 const app = express();
+
+app.use(isAuth)
+
 app.use(
     "/graphql",
     graphqlHTTP({
