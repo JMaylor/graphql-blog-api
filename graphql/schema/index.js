@@ -9,6 +9,8 @@ const schema = buildSchema(`
 		description: String!
 		content: String!
 		author: User!
+		createdAt: String
+		updatedAt: String
 	}
 
 	type User {
