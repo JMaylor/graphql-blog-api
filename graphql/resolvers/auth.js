@@ -12,11 +12,23 @@ const authResolver = {
                 12
             );
             const user = new User({
-                email: args.userInput.email,
+				email: args.userInput.email,
+				name: args.userInput.name,
                 password: hashedPassword,
             });
             const result = await user.save();
-            return { ...result._doc, password: null };
+            const token = jwt.sign(
+                { userID: result.id, email: result.email },
+                process.env.KEY,
+                {
+                    expiresIn: "1h",
+                }
+			);
+			return {
+				userID: user.id,
+				token,
+				tokenExpiration: 1
+			}
         } catch (err) {
             throw err;
         }

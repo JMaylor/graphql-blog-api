@@ -16,6 +16,7 @@ const schema = buildSchema(`
 	type User {
 		_id: ID!
 		email: String!
+		name: String!
 		password: String
 		createdPosts: [Post!]
 	}
@@ -34,6 +35,7 @@ const schema = buildSchema(`
 
 	input UserInput {
 		email: String!
+		name: String!
 		password: String!
 	}
 
@@ -44,7 +46,7 @@ const schema = buildSchema(`
 	
 	type RootMutation {
 		createPost(postInput: PostInput): Post
-		createUser(userInput: UserInput): User
+		createUser(userInput: UserInput): AuthData!
 	}
 
 	schema {
