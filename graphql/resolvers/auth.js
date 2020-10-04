@@ -56,7 +56,7 @@ const authResolver = {
 			return {
 				userID: user.id,
 				token,
-				tokenExpiration: 1
+				tokenExpiration: 3600
 			}
         } catch (err) {
             throw err;
